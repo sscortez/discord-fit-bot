@@ -1,9 +1,14 @@
+require: 
+  - rubocop-rails
+  - rubocop-rspec
+
 AllCops:
     NewCops: enable
     Exclude:
       - "bin/bundle"
+      - "db/schema.rb"
       - "spec/rails_helper.rb"
-      - "config/environments/production.rb" 
+      - "config/environments/production.rb"
 
 Gemspec/DeprecatedAttributeAssignment: # new in 1.30
   Enabled: true
@@ -165,3 +170,6 @@ Style/SwapValues: # new in 1.1
   Enabled: true
 Style/Documentation:
   Enabled: false
+Metrics/BlockLength:
+  Enabled: true
+  AllowedMethods: ['describe', 'context']

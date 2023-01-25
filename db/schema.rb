@@ -12,13 +12,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_230_118_211_250) do
+ActiveRecord::Schema[7.0].define(version: 20_230_125_144_836) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
+  create_table 'interactions', force: :cascade do |t|
+    t.bigint 'webhook_event_id'
+    t.string 'interaction_id', default: '', null: false
+    t.string 'service_name', default: '', null: false
+    t.string 'type', default: '', null: false
+    t.string 'timestamp', default: '', null: false
+    t.jsonb 'meta_data', default: {}, null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['webhook_event_id'], name: 'index_interactions_on_webhook_event_id'
+  end
+
   create_table 'users', force: :cascade do |t|
-    t.string 'discord_name'
-    t.string 'discord_id'
+    t.string 'discord_name', null: false
+    t.string 'discord_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
+
+  create_table 'webhook_events', force: :cascade do |t|
+    t.string 'service_name', default: '', null: false
+    t.string 'service_type', default: '', null: false
+    t.string 'request_signature', default: '', null: false
+    t.string 'request_body', default: '', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
   end

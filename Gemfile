@@ -24,6 +24,8 @@ gem 'discordrb', '~> 3.4.0'
 
 gem 'webpacker', '~> 5.4.3'
 
+gem 'ed25519', '~> 1.3.0'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
@@ -34,7 +36,11 @@ group :development, :test do
 
   gem 'rubocop-rails', '~> 2.17.4'
 
+  gem 'rubocop-rspec', '~> 2.18.1'
+
   gem 'factory_bot_rails', '~> 6.2.0'
+
+  gem 'pry', '~> 0.14.2'
 end
 
 group :development do

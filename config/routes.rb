@@ -5,4 +5,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  namespace :webhook_events do
+    post 'interactions', action: :test, controller: 'interactions'
+  end
 end

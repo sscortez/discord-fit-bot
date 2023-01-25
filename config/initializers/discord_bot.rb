@@ -8,6 +8,6 @@ DiscordBot = Discordrb::Commands::CommandBot.new(
   prefix: '/'
 )
 
-Dir["#{Rails.root}/app/commands/*.rb"].each { |file| require file }
+Dir[Rails.root.join('app/commands/*.rb')].each { |file| require file }
 
 DiscordBot.run('true')
