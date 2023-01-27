@@ -24,6 +24,8 @@ Layout/LineEndStringConcatenationIndentation: # new in 1.18
   Enabled: true
 Layout/SpaceBeforeBrackets: # new in 1.7
   Enabled: true
+Layout/HashAlignment:
+  Enabled: false
 Lint/AmbiguousAssignment: # new in 1.7
   Enabled: true
 Lint/AmbiguousOperatorPrecedence: # new in 1.21
@@ -173,3 +175,5 @@ Style/Documentation:
 Metrics/BlockLength:
   Enabled: true
   AllowedMethods: ['describe', 'context']
+Rails/Output:
+  Enabled: false

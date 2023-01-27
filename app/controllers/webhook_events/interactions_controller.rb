@@ -4,13 +4,16 @@ module WebhookEvents
   class InteractionsController < ApplicationController
     skip_before_action :verify_authenticity_token
 
-    def test
-      # puts 'The test method has been successfully called'
+    def create
+      validator = Interactions::WebhookValidator.new(request)
+      result = validator.call
 
-      validator = WebhookEvents::WebhookValidator.new(request)
-      validator.call
-
-      render json: { type: 1 }
+      if result
+        result.data
+        render json: { type: 1 }
+      else
+        render status: :unauthorized, json: { error: 'Invalid request signature' }
+      end
     end
   end
 end

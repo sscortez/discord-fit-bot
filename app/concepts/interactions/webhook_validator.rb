@@ -1,14 +1,19 @@
 # frozen_string_literal: true
 
-module WebhookEvents
+module Interactions
   class WebhookValidator
+    attr_reader :data
+
     def initialize(request, options = {})
       @request    = request
       @public_key = options['FITBOT_PUBLIC_KEY'].presence || ENV.fetch('FITBOT_PUBLIC_KEY')
+      @data       = nil
     end
 
     def call
       verify_request
+    rescue Ed25519::VerifyError
+      false
     end
 
     private
@@ -26,11 +31,11 @@ module WebhookEvents
     end
 
     def body
-      data ||= @request.body.read
+      @data ||= @request.body.read
 
       @request.body.rewind
 
-      data
+      @data
     end
 
     def verify_key

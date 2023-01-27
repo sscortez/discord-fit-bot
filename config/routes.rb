@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   namespace :webhook_events do
-    post 'interactions', action: :test, controller: 'interactions'
+    post 'interactions', action: :create, controller: 'interactions'
   end
 end
