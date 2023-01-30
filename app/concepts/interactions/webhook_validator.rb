@@ -2,12 +2,12 @@
 
 module Interactions
   class WebhookValidator
-    ValidatedRequest = Struct.new(:id, :type, :data)
+    ValidatedRequest = Struct.new(:id, :type, :body)
     attr_reader :data
 
     def initialize(request, options = {})
       @request    = request
-      @public_key = options[:fitbot_public_key].presence || ENV.fetch('FITBOT_PUBLIC_KEY')
+      @public_key = options[:public_key].presence || ENV.fetch('FITBOT_PUBLIC_KEY')
       @data       = nil
     end
 
