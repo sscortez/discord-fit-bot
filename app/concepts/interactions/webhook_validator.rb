@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 module Interactions
+  ##
+  # Validates discord request
   class WebhookValidator < WebhookEvents::WebhookValidator
-
     attr_reader :data
 
     def initialize(request, options = {})
+      super
       @request    = request
       @public_key = options[:public_key].presence || ENV.fetch('FITBOT_PUBLIC_KEY')
       @data       = nil

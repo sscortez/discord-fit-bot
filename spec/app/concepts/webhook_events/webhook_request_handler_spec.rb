@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe WebhookEvents::WebhookRequestHandler do
   describe '#call' do
     context 'when request data is valid' do
-      it 'calls WebhookWorker\'s perform_async method' do
+      it 'calls perform_async' do
         request = 'some_request'
 
         allow(WebhookEvents::WebhookWorker)

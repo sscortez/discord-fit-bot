@@ -15,7 +15,7 @@ module WebhookEvents
 
     def webhook_event_exists?(webhook_event)
       WebhookEvent.find_by(
-        request_id: webhook_event.id, 
+        request_id: webhook_event.id,
         request_type: webhook_event.type
       )
     end

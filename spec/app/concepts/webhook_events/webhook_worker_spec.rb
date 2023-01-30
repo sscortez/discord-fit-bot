@@ -5,9 +5,9 @@ require 'rails_helper'
 RSpec.describe WebhookEvents::WebhookWorker do
   describe '#perform' do
     context 'when webhook_event data is new' do
-      it 'saves webhook_event data to table' do
-        request = WebhookEvents::WebhookValidator::ValidatedRequest.new('some_id', 'some_type', 'some_body')
-        
+      it 'saves webhook_event data' do
+        request = validated_request
+
         expect do
           described_class.new.perform(request)
         end.to change(WebhookEvent, :count).by(1)
@@ -20,16 +20,16 @@ RSpec.describe WebhookEvents::WebhookWorker do
     end
 
     context 'when webhook_event data already exists' do
-      it 'updates existing data in table' do
+      it 'updates existing data' do
         create(
-          :webhook_event, 
-          request_id: 'some_id', 
-          request_type: 'some_type', 
+          :webhook_event,
+          request_id: 'some_id',
+          request_type: 'some_type',
           request_body: 'some_old_body'
         )
 
-        request = WebhookEvents::WebhookValidator::ValidatedRequest.new('some_id', 'some_type', 'some_body')
-        
+        request = validated_request
+
         expect do
           described_class.new.perform(request)
         end.not_to change(WebhookEvent, :count)
@@ -40,5 +40,15 @@ RSpec.describe WebhookEvents::WebhookWorker do
         expect(record.request_body).to eq(request.body)
       end
     end
+  end
+
+  private
+
+  def validated_request(id = '', type = '', body = '')
+    WebhookEvents::WebhookValidator::ValidatedRequest.new(
+      id.presence   || 'some_id',
+      type.presence || 'some_type',
+      body.presence || 'some_body'
+    )
   end
 end

@@ -175,5 +175,14 @@ Style/Documentation:
 Metrics/BlockLength:
   Enabled: true
   AllowedMethods: ['describe', 'context']
+Metrics/MethodLength:
+  Enabled: true
+  AllowedMethods: [
+    'handle_application_commands'
+  ]
 Rails/Output:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/ExampleLength:
   Enabled: false

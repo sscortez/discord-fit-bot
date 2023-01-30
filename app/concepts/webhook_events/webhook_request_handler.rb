@@ -15,7 +15,5 @@ module WebhookEvents
     def call
       WebhookEvents::WebhookWorker.perform_async(@request)
     end
-
-    private
   end
 end
