@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :webhook_event do
-    service_name      { 'some_service_name' }
-    service_type      { 'some_service_type' }
-    request_signature { 'some_request_signature' }
-    request_body      { 'some_request_body' }
+    sequence(:request_id) { |n| "some_request_id_#{n}" }
+
+    request_type { 'some_service_type' }
+    request_body { 'some_request_body' }
   end
 end

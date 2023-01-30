@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module WebhookEvents
+  ##
+  # Updates or creates webhook_event records
   class WebhookWorker
     include Sidekiq::Worker
     sidekiq_options retry: false
@@ -12,17 +14,17 @@ module WebhookEvents
     private
 
     def webhook_event_exists?(webhook_event)
-      WebhookEvents.find_by(
+      WebhookEvent.find_by(
         request_id: webhook_event.id, 
-        request_type: webhook_event.request_type
+        request_type: webhook_event.type
       )
     end
 
-    def create_webhook_event_record!()
-      webhook_event = webhook_events_exists?
+    def create_webhook_event_record!(webhook_event)
+      record = webhook_event_exists?(webhook_event)
 
-      if webhook_event
-        update_webhook_event!(webhook_event)
+      if record
+        update_webhook_event!(record, webhook_event)
       else
         WebhookEvent.create!(
           request_id:   webhook_event.id,
@@ -32,8 +34,8 @@ module WebhookEvents
       end
     end
 
-    def update_webhook_event!(webhook_event)
-      webhook_event.update!(request_body: webhook_event.body)
+    def update_webhook_event!(record, webhook_event)
+      record.update!(request_body: webhook_event.body)
     end
   end
 end

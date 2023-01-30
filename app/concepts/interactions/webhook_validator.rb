@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Interactions
-  class WebhookValidator
-    ValidatedRequest = Struct.new(:id, :type, :body)
+  class WebhookValidator < WebhookEvents::WebhookValidator
+
     attr_reader :data
 
     def initialize(request, options = {})
