@@ -2,16 +2,19 @@
 
 module Interactions
   class WebhookValidator
+    ValidatedRequest = Struct.new(:id, :type, :data)
     attr_reader :data
 
     def initialize(request, options = {})
       @request    = request
-      @public_key = options['FITBOT_PUBLIC_KEY'].presence || ENV.fetch('FITBOT_PUBLIC_KEY')
+      @public_key = options[:fitbot_public_key].presence || ENV.fetch('FITBOT_PUBLIC_KEY')
       @data       = nil
     end
 
     def call
       verify_request
+
+      ValidatedRequest.new(@body['id'], 'interaction', @body)
     rescue Ed25519::VerifyError
       false
     end
