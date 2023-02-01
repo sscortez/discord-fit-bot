@@ -2,39 +2,19 @@
 
 module WebhookEvents
   class WebhookValidator
+    ValidatedRequest = Struct.new(:id, :type, :body)
+
     def initialize(request, options = {})
-      @request    = request
-      @public_key = options['FITBOT_PUBLIC_KEY'].presence || ENV.fetch('FITBOT_PUBLIC_KEY')
+      @request = request
+      @options = options
     end
 
-    def call
-      verify_request
-    end
+    # @abstract Subclass is expected to implement #call
+    # @!method call
+    #    Make a particular model of world class vehicle
 
-    private
-
-    def verify_request
-      verify_key.verify([signature].pack('H*'), "#{timestamp}#{body}")
-    end
-
-    def signature
-      @request.headers['X-Signature-Ed25519']
-    end
-
-    def timestamp
-      @request.headers['X-Signature-Timestamp']
-    end
-
-    def body
-      data ||= @request.body.read
-
-      @request.body.rewind
-
-      data
-    end
-
-    def verify_key
-      Ed25519::VerifyKey.new([@public_key].pack('H*'))
-    end
+    # @abstract Subclass is expected to implement #verify_request
+    # @!method verify_request
+    #    Make a particular model of world class vehicle
   end
 end

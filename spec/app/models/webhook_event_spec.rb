@@ -7,23 +7,16 @@ RSpec.describe WebhookEvent, type: :model do
     expect(create(:webhook_event)).to be_valid
   end
 
-  it 'is not valid without a service_name' do
+  it 'is not valid without a request_id' do
     expect do
-      webhook_event = build(:webhook_event, service_name: nil)
+      webhook_event = build(:webhook_event, request_id: nil)
       webhook_event.save!
     end.to raise_error(ActiveRecord::RecordInvalid)
   end
 
-  it 'is not valid without a service_type' do
+  it 'is not valid without a request_type' do
     expect do
-      webhook_event = build(:webhook_event, service_type: nil)
-      webhook_event.save!
-    end.to raise_error(ActiveRecord::RecordInvalid)
-  end
-
-  it 'is not valid without a request_signature' do
-    expect do
-      webhook_event = build(:webhook_event, request_signature: nil)
+      webhook_event = build(:webhook_event, request_type: nil)
       webhook_event.save!
     end.to raise_error(ActiveRecord::RecordInvalid)
   end
