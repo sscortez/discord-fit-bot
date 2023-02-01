@@ -186,3 +186,5 @@ RSpec/MultipleExpectations:
   Enabled: false
 RSpec/ExampleLength:
   Enabled: false
+RSpec/VerifiedDoubleReference:
+  Enabled: false

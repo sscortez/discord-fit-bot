@@ -4,6 +4,11 @@ module WebhookEvents
   class WebhookValidator
     ValidatedRequest = Struct.new(:id, :type, :body)
 
+    def initialize(request, options = {})
+      @request = request
+      @options = options
+    end
+
     # @abstract Subclass is expected to implement #call
     # @!method call
     #    Make a particular model of world class vehicle

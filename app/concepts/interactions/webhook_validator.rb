@@ -8,7 +8,7 @@ module Interactions
 
     def initialize(request, options = {})
       super
-      @request    = request
+
       @public_key = options[:public_key].presence || ENV.fetch('FITBOT_PUBLIC_KEY')
       @data       = nil
     end
@@ -16,7 +16,7 @@ module Interactions
     def call
       verify_request
 
-      ValidatedRequest.new(@body['id'], 'interaction', @body)
+      ValidatedRequest.new(@data['id'], 'interaction', @data)
     rescue Ed25519::VerifyError
       false
     end
