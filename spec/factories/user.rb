@@ -2,8 +2,9 @@
 
 FactoryBot.define do
   factory :user do
-    discord_id        { 'some_discord_id' }
-    discord_name      { 'some_discord_name' }
-    discord_meta_data { { 'some_key' => 'some_value' } }
+    sequence(:discord_user_id) { |n| "some_discord_user_id_#{n}" }
+
+    username  { 'some_username' }
+    meta_data { { 'some_key' => 'some_value' } }
   end
 end

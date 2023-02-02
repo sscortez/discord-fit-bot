@@ -41,6 +41,18 @@ class DiscordClient
     end
   end
 
+  def get_user(user_id)
+    @connection.get("users/#{user_id}") do |con|
+      con.headers.update(Authorization: "Bot #{@bot_token}")
+    end
+  end
+
+  def get_guild(guild_id)
+    @connection.get("guilds/#{guild_id}") do |con|
+      con.headers.update(Authorization: "Bot #{@bot_token}")
+    end
+  end
+
   def connection
     @connection ||= Faraday.new do |conn|
       conn.url_prefix = @base_url

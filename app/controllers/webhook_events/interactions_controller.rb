@@ -9,6 +9,9 @@ module WebhookEvents
       result = validator.call
 
       if result
+        # handle request
+        # Is request this or that, then ingest it as such
+        # Forward response based on command
         WebhookEvents::WebhookRequestHandler.new(result).call
       else
         render status: :unauthorized, json: { error: 'Invalid request signature' }

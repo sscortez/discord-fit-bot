@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  validates :discord_id,        presence: true
-  validates :discord_name,      presence: true
-  validates :discord_meta_data, presence: true
+  has_many :registered_users
+  has_many :guilds, through: :registered_users
+
+  validates_presence_of :discord_user_id, :username, :meta_data
 end
