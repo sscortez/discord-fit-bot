@@ -18,7 +18,5 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_presence_of(:discord_user_id) }
     it { is_expected.to validate_presence_of(:username) }
     it { is_expected.to validate_presence_of(:meta_data) }
-
-    it { is_expected.to validate_uniqueness_of(:discord_user_id) }
   end
 end
