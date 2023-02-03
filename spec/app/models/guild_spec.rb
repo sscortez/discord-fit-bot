@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Guild, type: :model do
-  describe "associations" do
-    it { should have_many(:users) }
-    it { should have_many(:registered_users) }
+  describe 'associations' do
+    it { is_expected.to have_many(:users) }
+    it { is_expected.to have_many(:registered_users) }
   end
 
   it 'is valid with valid attributes' do
@@ -15,8 +15,8 @@ RSpec.describe Guild, type: :model do
   describe 'validations' do
     subject { build(:guild) }
 
-    it { should validate_presence_of(:discord_guild_id) }
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:meta_data) }
+    it { is_expected.to validate_presence_of(:discord_guild_id) }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:meta_data) }
   end
 end

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Guild < ApplicationRecord
-  has_many :registered_users
+  has_many :registered_users, dependent: nil
   has_many :users, through: :registered_users
 
-  validates_presence_of :discord_guild_id, :name, :meta_data
+  validates :discord_guild_id, :name, :meta_data, presence: true
 end

@@ -188,3 +188,7 @@ RSpec/ExampleLength:
   Enabled: false
 RSpec/VerifiedDoubleReference:
   Enabled: false
+RSpec/InstanceVariable:
+  Enabled: false
+RSpec/VerifiedDoubles:
+  Enabled: false
