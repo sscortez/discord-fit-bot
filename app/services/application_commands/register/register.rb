@@ -1,10 +1,17 @@
 # frozen_string_literal: true
 
 module ApplicationCommands
+<<<<<<< HEAD
   module Register
     ##
     # Checks registration and responds
     # with registration process result
+=======
+  ##
+  # Checks registration and responds
+  # with registration process result
+  module Register
+>>>>>>> a69aeac (Added command handler to distribute command requests. Updated tables. Updated tests to be more detailed)
     class Register
       ALREADY_REGISTERED = \
         'User %s is already registered with FitBot app in server %s!'

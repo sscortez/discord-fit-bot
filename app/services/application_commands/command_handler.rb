@@ -13,7 +13,11 @@ module ApplicationCommands
     def call
       command = APP_COMMANDS.fetch(requested_command)
 
+<<<<<<< HEAD
       command&.new(@request_body)&.call
+=======
+      command&.new(@reqeust_body)&.call
+>>>>>>> a69aeac (Added command handler to distribute command requests. Updated tables. Updated tests to be more detailed)
     end
 
     private
