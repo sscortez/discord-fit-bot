@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_02_152935) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_03_162422) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "guilds", force: :cascade do |t|
@@ -37,9 +38,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_02_152935) do
   create_table "registered_users", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "guild_id", null: false
+    t.uuid "uuid", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["guild_id"], name: "index_registered_users_on_guild_id"
+    t.index ["user_id", "guild_id"], name: "index_registered_users_on_user_id_and_guild_id", unique: true
     t.index ["user_id"], name: "index_registered_users_on_user_id"
   end
 

@@ -6,7 +6,11 @@ class CreateRegisteredUsers < ActiveRecord::Migration[7.0]
       t.references :user,  null: false, foreign_key: true
       t.references :guild, null: false, foreign_key: true
 
+      t.uuid :uuid, null: false
+
       t.timestamps
     end
+
+    add_index :registered_users, [:user_id, :guild_id], unique: true
   end
 end

@@ -4,5 +4,6 @@ class Guild < ApplicationRecord
   has_many :registered_users, dependent: nil
   has_many :users, through: :registered_users
 
-  validates :discord_guild_id, :name, :meta_data, presence: true
+  validates :name, :meta_data, presence: true
+  validates :discord_guild_id, presence: true, uniqueness: true
 end

@@ -18,5 +18,7 @@ RSpec.describe Guild, type: :model do
     it { is_expected.to validate_presence_of(:discord_guild_id) }
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:meta_data) }
+
+    it { is_expected.to validate_uniqueness_of(:discord_guild_id) }
   end
 end
