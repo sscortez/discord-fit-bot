@@ -14,10 +14,14 @@ module ApplicationCommands
       command = APP_COMMANDS.fetch(requested_command)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       command&.new(@request_body)&.call
 =======
       command&.new(@reqeust_body)&.call
 >>>>>>> a69aeac (Added command handler to distribute command requests. Updated tables. Updated tests to be more detailed)
+=======
+      command&.new(@request_body)&.call
+>>>>>>> ed023c3 (Finished adding /register command)
     end
 
     private

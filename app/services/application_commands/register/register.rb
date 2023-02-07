@@ -2,6 +2,7 @@
 
 module ApplicationCommands
 <<<<<<< HEAD
+<<<<<<< HEAD
   module Register
     ##
     # Checks registration and responds
@@ -12,6 +13,12 @@ module ApplicationCommands
   # with registration process result
   module Register
 >>>>>>> a69aeac (Added command handler to distribute command requests. Updated tables. Updated tests to be more detailed)
+=======
+  module Register
+    ##
+    # Checks registration and responds
+    # with registration process result
+>>>>>>> ed023c3 (Finished adding /register command)
     class Register
       ALREADY_REGISTERED = \
         'User %s is already registered with FitBot app in server %s!'
