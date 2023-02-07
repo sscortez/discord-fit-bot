@@ -22,8 +22,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'discordrb', '~> 3.4.0'
 
-gem 'webpacker', '~> 5.4.3'
-
 gem 'ed25519', '~> 1.3.0'
 
 gem 'faraday', '~> 2.7.4'
