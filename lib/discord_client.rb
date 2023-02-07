@@ -14,20 +14,6 @@ class DiscordClient
     @my_credentials_token = nil
   end
 
-  def create_a_test_fit_bot_command
-    url = "/applications/#{@application_id}/commands"
-    body = {
-      name:         'test',
-      type:         1,
-      description:  "A simple slash command. Returns 'Hello World!'",
-      autocomplete: true
-    }
-
-    @connection.post(url) do |conn|
-      conn.body = body
-    end
-  end
-
   def create_a_command(body, auth_type)
     connection.post do |con|
       con.body = body

@@ -4,33 +4,22 @@ module WebhookEvents
   class InteractionsController < ApplicationController
     skip_before_action :verify_authenticity_token
 
+    def index
+      render json: { type: 1 }
+    end
+
     def create
-      validator = Interactions::WebhookValidator.new(request, public_key: ENV.fetch('TESTAPP_PUBLIC_KEY'))
+      request
+
+      validator = Interactions::WebhookValidator.new(request, public_key: ENV.fetch('FITBOT_PUBLIC_KEY'))
       result = validator.call
 
       if result
-        # handle request
-        # Is request this or that, then ingest it as such
-        # Forward response based on command
-        WebhookEvents::WebhookRequestHandler.new(result).call
+        response = Interactions::RequestHandler.new(result.body).call
+
+        render json: {type: 4, data: {content: response}}
       else
         render status: :unauthorized, json: { error: 'Invalid request signature' }
-      end
-    end
-
-    def handle_application_commands
-      type = body['type']
-      case type
-      when 1
-        render json: { type: 1 }
-      when 2
-        response = {
-          type: 4,
-          data: {
-            content: 'Hello World!'
-          }
-        }
-        render json: response
       end
     end
   end

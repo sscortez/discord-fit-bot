@@ -13,7 +13,7 @@ module ApplicationCommands
     def call
       command = APP_COMMANDS.fetch(requested_command)
 
-      command&.new(@reqeust_body)&.call
+      command&.new(@request_body)&.call
     end
 
     private
