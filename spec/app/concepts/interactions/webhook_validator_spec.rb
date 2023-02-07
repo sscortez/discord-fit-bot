@@ -95,7 +95,7 @@ RSpec.describe Interactions::WebhookValidator do
   def test_double_body
     body = double
 
-    allow(body).to receive(:read).and_return({ 'id' => 'some_request_id' })
+    allow(body).to receive(:read).and_return(JSON.dump({ 'id' => 'some_request_id' }))
     allow(body).to receive(:rewind).and_return(true)
 
     body
