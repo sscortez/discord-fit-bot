@@ -16,6 +16,8 @@ module Interactions
     def call
       verify_request
 
+      @data = JSON.load(@data)
+
       ValidatedRequest.new(@data['id'], 'interaction', @data)
     rescue Ed25519::VerifyError
       false

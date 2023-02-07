@@ -3,21 +3,22 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  describe 'associations' do
+    it { is_expected.to have_many(:guilds) }
+    it { is_expected.to have_many(:registered_users) }
+  end
+
   it 'is valid with valid attributes' do
     expect(create(:user)).to be_valid
   end
 
-  it 'is not valid without a discord_id' do
-    expect do
-      user = build(:user, discord_id: nil)
-      user.save!
-    end.to raise_error(ActiveRecord::RecordInvalid)
-  end
+  describe 'validations' do
+    subject { build(:user) }
 
-  it 'is not valid without a discord_name' do
-    expect do
-      user = build(:user, discord_name: nil)
-      user.save!
-    end.to raise_error(ActiveRecord::RecordInvalid)
+    it { is_expected.to validate_presence_of(:discord_user_id) }
+    it { is_expected.to validate_presence_of(:username) }
+    it { is_expected.to validate_presence_of(:meta_data) }
+
+    it { is_expected.to validate_uniqueness_of(:discord_user_id) }
   end
 end

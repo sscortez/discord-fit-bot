@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_25_144836) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_03_162422) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "guilds", force: :cascade do |t|
+    t.string "discord_guild_id", default: "", null: false
+    t.string "name", default: "", null: false
+    t.jsonb "meta_data", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "interactions", force: :cascade do |t|
     t.bigint "webhook_event_id"
@@ -26,10 +35,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_25_144836) do
     t.index ["webhook_event_id"], name: "index_interactions_on_webhook_event_id"
   end
 
+  create_table "registered_users", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "guild_id", null: false
+    t.uuid "uuid", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guild_id"], name: "index_registered_users_on_guild_id"
+    t.index ["user_id", "guild_id"], name: "index_registered_users_on_user_id_and_guild_id", unique: true
+    t.index ["user_id"], name: "index_registered_users_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string "discord_name", null: false
-    t.string "discord_id", null: false
-    t.string "discord_meta_data", null: false
+    t.string "username", default: "", null: false
+    t.string "discord_user_id", default: "", null: false
+    t.jsonb "meta_data", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,4 +62,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_25_144836) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "registered_users", "guilds"
+  add_foreign_key "registered_users", "users"
 end

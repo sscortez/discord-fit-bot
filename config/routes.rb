@@ -8,5 +8,6 @@ Rails.application.routes.draw do
 
   namespace :webhook_events do
     post 'interactions', action: :create, controller: 'interactions'
+    get  'interactions', action: :index, controller: 'interactions'
   end
 end
