@@ -17,7 +17,7 @@ module WebhookEvents
       if result
         response = Interactions::RequestHandler.new(result.body).call
 
-        render json: {type: 4, data: {content: response}}
+        render json: { type: 4, data: { content: response } }
       else
         render status: :unauthorized, json: { error: 'Invalid request signature' }
       end
