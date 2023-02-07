@@ -59,10 +59,8 @@ RSpec.describe Interactions::RequestHandler do
     context 'when a request type is not found' do
       let(:request_body) { { 'type' => 3 } }
 
-      it 'raises a KeyError' do
-        expect do
-          described_class.new(request_body).call
-        end.to raise_error(KeyError)
+      it 'returns nil' do
+        expect(described_class.new(request_body).call).to be nil
       end
     end
   end

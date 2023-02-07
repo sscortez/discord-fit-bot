@@ -2,18 +2,19 @@
 
 module Interactions
   class RequestHandler
-    REQUEST_TYPES = {
-      2 => ApplicationCommands::CommandHandler
-    }.freeze
+    RequestOutput = Struct.new(:type, :output)
 
     def initialize(request_body)
       @request_body = request_body
     end
 
     def call
-      handler = REQUEST_TYPES.fetch(request_type)
-
-      handler&.new(@request_body)&.call
+      case request_type
+      when 1
+        RequestOutput.new(1, true)
+      when 2
+        RequestOutput.new(4, ApplicationCommands::CommandHandler.new(@request_body).call)
+      end
     end
 
     private
