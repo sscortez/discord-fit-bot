@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'discord_client'
 
-RSpec.describe ApplicationCommands::Register::RegisterUser do
+RSpec.describe RegisteredUsers::Register do
   describe '#new' do
     context 'when user_id and guild_id are provided' do
       it 'creates a new instantiation of class' do

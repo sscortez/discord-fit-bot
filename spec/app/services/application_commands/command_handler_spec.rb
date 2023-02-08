@@ -28,9 +28,9 @@ RSpec.describe ApplicationCommands::CommandHandler do
       let(:request_body) { { 'data' => { 'name' => 'register' } } }
 
       let(:service_class) do
-        service_class = instance_double(ApplicationCommands::Register::Register)
+        service_class = instance_double(ApplicationCommands::Register)
 
-        allow(ApplicationCommands::Register::Register)
+        allow(ApplicationCommands::Register)
           .to receive(:new)
           .and_return(service_class)
 
@@ -44,7 +44,7 @@ RSpec.describe ApplicationCommands::CommandHandler do
 
         described_class.new(request_body).call
 
-        expect(ApplicationCommands::Register::Register).to have_received(:new).once
+        expect(ApplicationCommands::Register).to have_received(:new).once
       end
 
       it 'uses the call method of the service class' do
