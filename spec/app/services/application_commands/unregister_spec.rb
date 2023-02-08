@@ -25,9 +25,7 @@ RSpec.describe ApplicationCommands::Unregister do
 
   describe '#call' do
     context 'when user is currently registered' do
-      let(:user) { create(:user) }
-      let(:guild) { create(:guild) }
-      let(:registered_user) { create(:registered_user, user: ) }
+      let(:registered_user) { create(:registered_user) }
 
       it 'returns a user-unregistered message' do
         request_body = {

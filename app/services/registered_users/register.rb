@@ -8,10 +8,10 @@ module RegisteredUsers
   # Registers user in the app
 
   class Register
-    def initialize(user_id, guild_id)
+    def initialize(user_id, guild_id, application_id)
       @user_id  = user_id
       @guild_id = guild_id
-      @client   = DiscordClient.new
+      @client   = DiscordClient.new(application_id)
     end
 
     def call

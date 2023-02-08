@@ -26,6 +26,7 @@ RSpec.describe RegisteredUsers::Unregister do
   describe '#call' do
     context 'when a RegisteredUser record is passed' do
       let(:registered_user) { create(:registered_user) }
+
       it 'deletes the record from the table' do
         result = described_class.new(registered_user).call
 

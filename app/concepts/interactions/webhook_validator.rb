@@ -45,8 +45,19 @@ module Interactions
       @data
     end
 
+    def public_key
+      hashed = JSON.parse(body)
+
+      case hashed['application_id']
+      when ENV.fetch('TESTAPP_APPLICATION_ID')
+        ENV.fetch('TESTAPP_PUBLIC_KEY')
+      when ENV.fetch('FITBOT_APPLICATION_ID')
+        ENV.fetch('FITBOT_PUBLIC_KEY')
+      end
+    end
+
     def verify_key
-      Ed25519::VerifyKey.new([@public_key].pack('H*'))
+      Ed25519::VerifyKey.new([public_key].pack('H*'))
     end
   end
 end

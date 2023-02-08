@@ -30,7 +30,7 @@ module ApplicationCommands
       if registered_user
         user_already_registered_message(registered_user)
       else
-        registered_user = RegisteredUsers::Register.new(user_id, guild_id).call
+        registered_user = RegisteredUsers::Register.new(user_id, guild_id, application_id).call
         new_user_registered_message(registered_user)
       end
     rescue ActiveRecord::RecordInvalid
@@ -68,6 +68,10 @@ module ApplicationCommands
 
     def guild_id
       @request_body['guild_id']
+    end
+
+    def application_id
+      @request_body['application_id']
     end
   end
 end

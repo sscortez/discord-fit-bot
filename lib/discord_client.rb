@@ -3,9 +3,9 @@
 require 'faraday'
 
 class DiscordClient
-  def initialize(options = {})
-    @bot_token      = options[:bot_token].presence      || ENV.fetch('FITBOT_TOKEN')
-    @application_id = options[:application_id].presence || ENV.fetch('FITBOT_APPLICATION_ID')
+  def initialize(application_id, options = {})
+    @application_id = application_id
+    @bot_token      = bot_token
     @base_url       = options[:base_url].presence       || ENV.fetch('DISCORD_BASE_URL')
     @adapter        = options[:adapter].presence        || Faraday.default_adapter
     @connection     = options[:connection].presence     || connection
@@ -45,6 +45,17 @@ class DiscordClient
       conn.request :json
       conn.response :json, content_type: 'application/json'
       conn.adapter @adapter
+    end
+  end
+
+  private
+
+  def bot_token
+    case @application_id
+    when ENV.fetch('FITBOT_APPLICATION_ID')
+      ENV.fetch('FITBOT_TOKEN')
+    when ENV.fetch('TESTAPP_APPLICATION_ID')
+      ENV.fetch('TESTAPP_TOKEN')
     end
   end
 end
