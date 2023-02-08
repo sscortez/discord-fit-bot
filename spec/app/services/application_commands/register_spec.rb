@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'discord_client'
 
-RSpec.describe ApplicationCommands::Register::Register do
+RSpec.describe ApplicationCommands::Register do
   describe '#new' do
     context 'when request_body provided' do
       it 'creates a new instantiation of class' do
@@ -41,7 +41,7 @@ RSpec.describe ApplicationCommands::Register::Register do
 
         expect(response).to eq(
           format(
-            ApplicationCommands::Register::Register::ALREADY_REGISTERED,
+            ApplicationCommands::Register::ALREADY_REGISTERED,
             user_obj.username,
             guild_obj.name
           )
@@ -81,7 +81,7 @@ RSpec.describe ApplicationCommands::Register::Register do
 
         expect(response).to eq(
           format(
-            ApplicationCommands::Register::Register::NOW_REGISTERED,
+            ApplicationCommands::Register::NOW_REGISTERED,
             user_obj.username,
             guild_obj.name
           )
@@ -91,9 +91,9 @@ RSpec.describe ApplicationCommands::Register::Register do
 
     context 'when there is an error trying to create a new registered user' do
       let(:register_user_call) do
-        ru_call = instance_double(ApplicationCommands::Register::RegisterUser)
+        ru_call = instance_double(RegisteredUsers::Register)
 
-        allow(ApplicationCommands::Register::RegisterUser).to receive(:new).and_return(ru_call)
+        allow(RegisteredUsers::Register).to receive(:new).and_return(ru_call)
         allow(ru_call).to receive(:call).and_raise(ActiveRecord::RecordInvalid)
 
         ru_call
@@ -105,7 +105,7 @@ RSpec.describe ApplicationCommands::Register::Register do
 
         response = described_class.new(request_body).call
 
-        expect(response).to eq(ApplicationCommands::Register::Register::ERRORED)
+        expect(response).to eq(ApplicationCommands::Register::ERRORED)
       end
     end
   end

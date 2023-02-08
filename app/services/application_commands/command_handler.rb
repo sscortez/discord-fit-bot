@@ -3,7 +3,8 @@
 module ApplicationCommands
   class CommandHandler
     APP_COMMANDS = {
-      'register' => ApplicationCommands::Register::Register
+      'register'   => ApplicationCommands::Register,
+      'unregister' => ApplicationCommands::Unregister
     }.freeze
 
     def initialize(request_body)

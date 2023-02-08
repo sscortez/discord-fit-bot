@@ -11,17 +11,13 @@ module WebhookEvents
     def create
       request
 
-      validator = Interactions::WebhookValidator.new(request, public_key: ENV.fetch('FITBOT_PUBLIC_KEY'))
+      validator = Interactions::WebhookValidator.new(request)
       result = validator.call
 
       if result
         response = Interactions::RequestHandler.new(result.body).call
 
-        if response.type == 1
-          render json: { type: response.type }
-        else
-          render json: { type: response.type, data: { content: response.output } }
-        end
+        render json: { type: response.type, data: { content: response.output } }
       else
         render status: :unauthorized, json: { error: 'Invalid request signature' }
       end

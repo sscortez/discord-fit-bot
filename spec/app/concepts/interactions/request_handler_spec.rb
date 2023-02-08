@@ -60,7 +60,7 @@ RSpec.describe Interactions::RequestHandler do
       let(:request_body) { { 'type' => 3 } }
 
       it 'returns nil' do
-        expect(described_class.new(request_body).call).to be nil
+        expect(described_class.new(request_body).call).to be_nil
       end
     end
   end
