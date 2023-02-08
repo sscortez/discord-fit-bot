@@ -11,7 +11,7 @@ module WebhookEvents
     def create
       request
 
-      validator = Interactions::WebhookValidator.new(request, public_key: ENV.fetch('FITBOT_PUBLIC_KEY'))
+      validator = Interactions::WebhookValidator.new(request)
       result = validator.call
 
       if result

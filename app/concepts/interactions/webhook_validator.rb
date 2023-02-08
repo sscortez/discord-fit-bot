@@ -3,14 +3,14 @@
 module Interactions
   ##
   # Validates discord request
+
   class WebhookValidator < WebhookEvents::WebhookValidator
     attr_reader :data
 
     def initialize(request, options = {})
       super
 
-      @public_key = options[:public_key].presence || ENV.fetch('FITBOT_PUBLIC_KEY')
-      @data       = nil
+      @data = nil
     end
 
     def call
