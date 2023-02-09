@@ -1,19 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This a Discord app that can be used to initiate a fitness journey amongst users in your server. Each month users are challenged to create and maintain a fitness goal. They will log their exercises. Their progress will be aggregated to the whole group's progress. After the challenge month is closed, the group's tally is calculated and a celebratory message will be sent if the group goal is achieved or met within a certain threshold. This app is built using Ruby on Rails
 
-Things you may want to cover:
+* Ruby version:  3.2.0
+* Rails version: 7.0.4.2
 
-* Ruby version
+---
 
-* System dependencies
+*Setup:*
+1. Install the app in your server
+2. Users register to the app by calling the command `/register`. They can unregister at any time by calling the command `/unregister`. The total number of users will be used to calculate on a regular bases the group's fitness progress for the month 
+
+
+* System dependencies: 
 
 * Configuration
 
-* Database creation
+* Database creation: We use PostgreSQL
 
-* Database initialization
+* Database initialization: No need to initialize. Just install the app to your server
 
 * How to run the test suite
 
