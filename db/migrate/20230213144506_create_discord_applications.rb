@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateDiscordApplications < ActiveRecord::Migration[7.0]
   def change
     create_table :discord_applications do |t|
@@ -7,5 +9,7 @@ class CreateDiscordApplications < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+
+    add_index :discord_applications, ['discord_application_id'], unique: true
   end
 end

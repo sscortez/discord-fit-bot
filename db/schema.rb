@@ -31,6 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_145929) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["application_command_type_id"], name: "index_application_commands_on_application_command_type_id"
+    t.index ["discord_application_command_id"], name: "index_application_commands_on_discord_application_command_id", unique: true
     t.index ["discord_application_id", "discord_application_command_id"], name: "application_commands_index", unique: true
     t.index ["discord_application_id"], name: "index_application_commands_on_discord_application_id"
   end
@@ -41,6 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_145929) do
     t.jsonb "meta_data", default: {}, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["discord_application_id"], name: "index_discord_applications_on_discord_application_id", unique: true
   end
 
   create_table "guilds", force: :cascade do |t|

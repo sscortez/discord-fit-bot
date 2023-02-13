@@ -180,6 +180,8 @@ Metrics/MethodLength:
   AllowedMethods: [
     'handle_application_commands'
   ]
+  Exclude:
+    - "db/migrate/20230213145929_create_application_commands.rb"
 Rails/Output:
   Enabled: false
 RSpec/MultipleExpectations:

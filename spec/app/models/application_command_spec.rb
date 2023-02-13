@@ -19,6 +19,6 @@ RSpec.describe ApplicationCommand, type: :model do
     it { is_expected.to validate_presence_of(:meta_data) }
 
     it { is_expected.to validate_uniqueness_of(:discord_application_command_id) }
-    it { is_expected.to have_db_index([:discord_application_id, :discord_application_command_id]).unique(true) }
+    it { is_expected.to have_db_index(%i[discord_application_id discord_application_command_id]).unique(true) }
   end
 end
