@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_13_145929) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_13_154629) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -48,7 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_145929) do
   create_table "guilds", force: :cascade do |t|
     t.string "discord_guild_id", default: "", null: false
     t.string "name", default: "", null: false
-    t.jsonb "meta_data", default: "", null: false
+    t.jsonb "meta_data", default: {}, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discord_guild_id"], name: "index_guilds_on_discord_guild_id", unique: true
@@ -80,7 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_145929) do
   create_table "users", force: :cascade do |t|
     t.string "username", default: "", null: false
     t.string "discord_user_id", default: "", null: false
-    t.jsonb "meta_data", default: "", null: false
+    t.jsonb "meta_data", default: {}, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discord_user_id"], name: "index_users_on_discord_user_id", unique: true
