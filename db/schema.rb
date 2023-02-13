@@ -10,10 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_07_054240) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_13_145929) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "application_command_types", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "description", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "application_commands", force: :cascade do |t|
+    t.bigint "discord_application_id", null: false
+    t.bigint "application_command_type_id", null: false
+    t.string "discord_application_command_id", null: false
+    t.string "name", default: "", null: false
+    t.jsonb "meta_data", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["application_command_type_id"], name: "index_application_commands_on_application_command_type_id"
+    t.index ["discord_application_id", "discord_application_command_id"], name: "application_commands_index", unique: true
+    t.index ["discord_application_id"], name: "index_application_commands_on_discord_application_id"
+  end
+
+  create_table "discord_applications", force: :cascade do |t|
+    t.string "discord_application_id", default: "", null: false
+    t.string "name", default: "", null: false
+    t.jsonb "meta_data", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "guilds", force: :cascade do |t|
     t.string "discord_guild_id", default: "", null: false
@@ -64,6 +92,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_07_054240) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "application_commands", "application_command_types"
+  add_foreign_key "application_commands", "discord_applications"
   add_foreign_key "registered_users", "guilds"
   add_foreign_key "registered_users", "users"
 end
