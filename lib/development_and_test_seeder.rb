@@ -6,10 +6,15 @@
 class DevelopmentAndTestSeeder
   def call
     seed_application_command_types
+    seed_discord_applications
   end
 
   def seed_application_command_types
     invoke_rake_task('discord_applications:seed_application_command_types')
+  end
+
+  def seed_discord_applications
+    invoke_rake_task('discord_applications:seed_discord_applications')
   end
 
   private
