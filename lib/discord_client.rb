@@ -46,6 +46,12 @@ class DiscordClient
     end
   end
 
+  def get_application_commands
+    @connection.get("applications/#{@application_id}/commands") do |con|
+      con.headers.update(Authorization: "Bot #{@bot_token}")
+    end
+  end
+
   def connection
     @connection ||= Faraday.new do |conn|
       conn.url_prefix = @base_url

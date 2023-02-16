@@ -3,11 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'rake discord_applications:seed_discord_applications', type: :task do
-  include_context 'when mocking discord client'
+  include_context 'when using discord client'
 
   it 'empties the application_command_types table before populating it' do
-    mock_env
-    client
+    stub_client_method(client)
 
     allow(DiscordApplication).to receive(:destroy_all)
 
@@ -17,8 +16,7 @@ RSpec.describe 'rake discord_applications:seed_discord_applications', type: :tas
   end
 
   it 'populates two records in the application_command_types table' do
-    mock_env
-    client
+    stub_client_method(client)
 
     task.execute
 
@@ -26,8 +24,7 @@ RSpec.describe 'rake discord_applications:seed_discord_applications', type: :tas
   end
 
   it 'the first record matches expected values' do
-    mock_env
-    client
+    stub_client_method(client)
 
     task.execute
 
@@ -44,8 +41,7 @@ RSpec.describe 'rake discord_applications:seed_discord_applications', type: :tas
   end
 
   it 'the second record matches expected values' do
-    mock_env
-    client
+    stub_client_method(client)
 
     task.execute
 
@@ -61,16 +57,35 @@ RSpec.describe 'rake discord_applications:seed_discord_applications', type: :tas
     )
   end
 
+  it 'calls client method #get_application twice' do
+    stub_client_method(client)
+
+    task.execute
+
+    expect(client).to have_received(:get_application).twice
+  end
+
   private
 
-  def mock_env
-    allow(ENV)
-      .to receive(:fetch)
-      .with('FITBOT_APPLICATION_ID')
-      .and_return('some_fitbot_application_id')
-    allow(ENV)
-      .to receive(:fetch)
-      .with('TESTAPP_APPLICATION_ID')
-      .and_return('some_testapp_application_id')
+  ##
+  # Stubs #get_application
+
+  def stub_client_method(client)
+    allow(client)
+      .to receive(:get_application)
+      .and_return(
+        double(
+          body: {
+            'id'   => 'some_app_id_1',
+            'name' => 'some_app_name_1'
+          }
+        ),
+        double(
+          body: {
+            'id'   => 'some_app_id_2',
+            'name' => 'some_app_name_2'
+          }
+        )
+      )
   end
 end
