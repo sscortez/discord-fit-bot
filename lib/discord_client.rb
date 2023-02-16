@@ -5,6 +5,7 @@ require 'faraday'
 class DiscordClient
   def initialize(application_id, options = {})
     @application_id = application_id
+
     @bot_token      = bot_token
     @base_url       = options[:base_url].presence       || ENV.fetch('DISCORD_BASE_URL')
     @adapter        = options[:adapter].presence        || Faraday.default_adapter
@@ -35,6 +36,18 @@ class DiscordClient
 
   def get_guild(guild_id)
     @connection.get("guilds/#{guild_id}") do |con|
+      con.headers.update(Authorization: "Bot #{@bot_token}")
+    end
+  end
+
+  def get_application
+    @connection.get("applications/#{@application_id}") do |con|
+      con.headers.update(Authorization: "Bot #{@bot_token}")
+    end
+  end
+
+  def get_application_commands
+    @connection.get("applications/#{@application_id}/commands") do |con|
       con.headers.update(Authorization: "Bot #{@bot_token}")
     end
   end

@@ -82,8 +82,35 @@ Lint/UselessRescue: # new in 1.43
   Enabled: true
 Lint/UselessRuby2Keywords: # new in 1.23
   Enabled: true
+Metrics/BlockLength:
+  Enabled: true
+  AllowedMethods: ['describe', 'context']
+Metrics/MethodLength:
+  Enabled: true
+  AllowedMethods: [
+    'handle_application_commands',
+    'stub_client_method'
+  ]
+  Exclude:
+    - "db/migrate/20230213145929_create_application_commands.rb"
+Naming/AccessorMethodName:
+  Enabled: true
+  Exclude:
+    - "lib/discord_client.rb"
 Naming/BlockForwarding: # new in 1.24
   Enabled: true
+Rails/Output:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/VerifiedDoubleReference:
+  Enabled: false
+RSpec/InstanceVariable:
+  Enabled: false
+RSpec/VerifiedDoubles:
+  Enabled: false
 Security/CompoundHash: # new in 1.28
   Enabled: true
 Security/IoMethods: # new in 1.22
@@ -171,24 +198,4 @@ Style/StringChars: # new in 1.12
 Style/SwapValues: # new in 1.1
   Enabled: true
 Style/Documentation:
-  Enabled: false
-Metrics/BlockLength:
-  Enabled: true
-  AllowedMethods: ['describe', 'context']
-Metrics/MethodLength:
-  Enabled: true
-  AllowedMethods: [
-    'handle_application_commands'
-  ]
-Rails/Output:
-  Enabled: false
-RSpec/MultipleExpectations:
-  Enabled: false
-RSpec/ExampleLength:
-  Enabled: false
-RSpec/VerifiedDoubleReference:
-  Enabled: false
-RSpec/InstanceVariable:
-  Enabled: false
-RSpec/VerifiedDoubles:
   Enabled: false
