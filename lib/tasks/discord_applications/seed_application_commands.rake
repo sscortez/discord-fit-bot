@@ -24,7 +24,5 @@ namespace :discord_applications do
         )
       end
     end
-
-    p "Created #{ApplicationCommand.count} applications commands"
   end
 end

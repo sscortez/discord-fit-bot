@@ -22,7 +22,5 @@ namespace :discord_applications do
       name: 'MESSAGE',
       description: 'A UI-based command that shows up when you right click or tap on a message'
     )
-
-    p "Created #{ApplicationCommandType.count} application command types"
   end
 end

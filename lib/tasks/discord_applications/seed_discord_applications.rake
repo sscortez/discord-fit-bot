@@ -21,7 +21,5 @@ namespace :discord_applications do
         meta_data: response_body
       )
     end
-
-    p "Created #{DiscordApplication.count} discord applications"
   end
 end
