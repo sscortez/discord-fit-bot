@@ -6,11 +6,12 @@ jobs:
   linting:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ruby/setup-ruby@v1
+      - name: 'Checkout code'
+        uses: actions/checkout@v3
+      - name: 'Setup Ruby and install gems'
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2.0
           bundler-cache: true
-      - run: bundle install
-      - name: Rubocop
+      - name: 'Run Rubocop linter'
         run: rubocop
