@@ -24,13 +24,12 @@ jobs:
     name: Testing
     runs-on: ubuntu-latest
     services:
-      postgres:
+      discord_fit_bot_test:
         image: postgres:12.1-alpine
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
         env:
-          POSTGRES_DB: test
           DISCORD_FIT_BOT_DATABASE_PASSWORD: ${{ secrets.DISCORD_FIT_BOT_DATABASE_PASSWORD }}
 
     steps:
@@ -46,8 +45,6 @@ jobs:
         run: |
           bundle exec rails db:create
           bundle exec rails db:migrate
-        env:
-          RAILS_ENV: test
       - name: Print env variable
         run: echo ${{ vars.TEST_VARIABLE }}
       - name: Try calling secret
