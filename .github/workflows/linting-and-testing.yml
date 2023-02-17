@@ -39,4 +39,4 @@ jobs:
       #   run: |
       #     bundle exec rails db:create db:migrate
       - name: Print env variable
-        run: echo $TEST_VARIABLE
+        run: echo ${{ env.TEST_VARIABLE }}
