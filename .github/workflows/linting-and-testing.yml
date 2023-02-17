@@ -2,6 +2,9 @@ name: Linting-and-Testing
 
 on: [push]
 
+env:
+  TEST_VARIABLE: ${{ vars.TEST_VARIABLE }}
+
 jobs:
   linting:
     name: 'Linting'
@@ -21,9 +24,6 @@ jobs:
     name: 'Testing'
     runs-on: ubuntu-latest
     steps:
-      - name: Set environment variables
-        env:
-          TEST_VARIABLE: ${{ vars.TEST_VARIABLE }}
       - name: 'Checkout code'
         uses: actions/checkout@v3
       - name: 'Setup Ruby and install gems'
