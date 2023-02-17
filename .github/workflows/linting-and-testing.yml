@@ -1,9 +1,9 @@
-name: Linting and Testing
+name: Linting-and-Testing
 
 on: [push]
 
 jobs:
-  linting and testing:
+  linting-and-testing:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout code'
