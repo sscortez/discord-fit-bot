@@ -21,6 +21,9 @@ jobs:
     name: 'Testing'
     runs-on: ubuntu-latest
     steps:
+      - name: Set environment variables
+        env:
+          TEST_VARIABLE: ${{ vars.TEST_VARIABLE }}
       - name: 'Checkout code'
         uses: actions/checkout@v3
       - name: 'Setup Ruby and install gems'
@@ -41,4 +44,4 @@ jobs:
       - name: Print env variable
         run: echo env.TEST_VARIABLE
       - name: Another echo line
-        run: echo 'This is another line for comparison'
+        run: echo 'This is another line for comparison' || echo $TEST_VARIABLE
