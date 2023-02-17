@@ -20,5 +20,6 @@ jobs:
   testing:
     name: 'Testing'
     needs: [linting]
-    - name: 'Run RSpec testing'
-      run: rspec
+    steps:
+      - name: 'Run RSpec testing'
+        run: rspec
