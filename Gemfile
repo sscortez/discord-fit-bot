@@ -38,6 +38,8 @@ gem 'rubocop-rails', '~> 2.17.4'
 
 gem 'rubocop-rspec', '~> 2.18.1'
 
+gem 'rspec', '~> 3.12.0'
+
 gem 'rspec-rails', '~> 6.0.1'
 
 gem 'shoulda-matchers', '~> 5.3.0'
