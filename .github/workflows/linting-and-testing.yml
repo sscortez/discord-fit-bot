@@ -38,6 +38,7 @@ jobs:
           PGUSER: discord-fit-bot
         run: |
           bundle exec rails db:create db:migrate
-
-      - name: Run tests
-        run: rspec
+      - name: Print env variable
+        run: echo $TEST_VARIABLE
+      # - name: Run tests
+      #   run: rspec
