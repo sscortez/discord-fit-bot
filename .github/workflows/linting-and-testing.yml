@@ -50,10 +50,10 @@ jobs:
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: myapp
-      # - name: Connect to PostgreSQL
-      #   run: |
-      #     bundle exec rails db:create
-      #     bundle exec rails db:migrate
+      - name: Connect to PostgreSQL
+        run: |
+          bundle exec rails db:create
+          bundle exec rails db:migrate
       - name: Print env variable
         run: echo ${{ vars.TEST_VARIABLE }}
       - name: Try calling secret
