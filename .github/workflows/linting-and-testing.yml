@@ -31,12 +31,12 @@ jobs:
         run: bundle install
       # - name: 'Run RSpec testing'
       #   run: rspec
-      - name: Setup test database
-        env:
-          RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: discord-fit-bot
-        run: |
-          bundle exec rails db:create db:migrate
+      # - name: Setup test database
+      #   env:
+      #     RAILS_ENV: test
+      #     PGHOST: localhost
+      #     PGUSER: discord-fit-bot
+      #   run: |
+      #     bundle exec rails db:create db:migrate
       - name: Print env variable
         run: echo $TEST_VARIABLE
