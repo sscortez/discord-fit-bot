@@ -47,6 +47,7 @@ jobs:
       - name: Test some postgres CLI
         run: psql -l
         env:
+          DATABASE_URL: postgres://postgres:@localhost:5432/myapp_test
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: myapp
