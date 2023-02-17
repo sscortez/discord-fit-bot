@@ -4,32 +4,32 @@ on: [push]
 
 jobs:
   linting:
-    name: 'Linting'
+    name: Linting
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout code'
+      - name: Checkout code
         uses: actions/checkout@v3
-      - name: 'Setup Ruby and install gems'
+      - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2.0
-      - name: 'Install using Bundler'
+      - name: Install using Bundler
         run: bundle install
-      - name: 'Run Rubocop linter'
+      - name: Run Rubocop linter
         run: rubocop
   testing:
-    name: 'Testing'
+    name: Testing
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout code'
+      - name: Checkout code
         uses: actions/checkout@v3
-      - name: 'Setup Ruby and install gems'
+      - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2.0
-      - name: 'Install using Bundler'
+      - name: Install using Bundler
         run: bundle install
-      # - name: 'Run RSpec testing'
+      # - name: Run RSpec testing
       #   run: rspec
       # - name: Setup test database
       #   env:
@@ -42,3 +42,5 @@ jobs:
         run: echo ${{ vars.TEST_VARIABLE }}
       - name: Another echo line
         run: echo 'This is another line for comparison $TEST_VARIABLE'
+      - name: Try calling secret
+        run: echo ${{ secrets.DISCORD_FIT_BOT_DATABASE_PASSWORD }}
