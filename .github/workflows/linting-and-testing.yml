@@ -2,9 +2,6 @@ name: Linting-and-Testing
 
 on: [push]
 
-env:
-  TEST_VARIABLE: ${{ vars.TEST_VARIABLE }}
-
 jobs:
   linting:
     name: 'Linting'
@@ -42,6 +39,6 @@ jobs:
       #   run: |
       #     bundle exec rails db:create db:migrate
       - name: Print env variable
-        run: echo ${{ env.TEST_VARIABLE }}
+        run: echo ${{ vars.TEST_VARIABLE }}
       - name: Another echo line
         run: echo 'This is another line for comparison $TEST_VARIABLE'
