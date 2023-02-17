@@ -33,8 +33,7 @@ module Commands
     end
 
     def call
-      p COMMAND_TYPES['CHAT_INPUT']
-      p 'This method has been called'
+      'This method has been called'
     end
 
     def body
