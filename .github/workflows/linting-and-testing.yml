@@ -40,3 +40,5 @@ jobs:
       #     bundle exec rails db:create db:migrate
       - name: Print env variable
         run: echo $TEST_VARIABLE
+      - name: Another echo line
+        run: echo 'This is another line for comparison'
