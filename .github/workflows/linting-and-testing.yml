@@ -16,7 +16,7 @@ jobs:
       - name: 'Install using Bundler'
         run: bundle install
       - name: 'Run Rubocop linter'
-        run: rubocop
+        run: rubocop --parallel
   testing:
     name: 'Testing'
     runs-on: ubuntu-latest
