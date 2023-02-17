@@ -47,13 +47,12 @@ jobs:
       - name: Test some postgres CLI
         run: psql -l
         env:
-          DATABASE_URL: postgres://postgres:@localhost:5432/myapp_test
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: myapp
       - name: Connect to PostgreSQL
         run: |
-          bundle exec rails db:create
+          bin/rails db:create
           bundle exec rails db:migrate
       - name: Print env variable
         run: echo ${{ vars.TEST_VARIABLE }}
