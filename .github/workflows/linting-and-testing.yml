@@ -16,6 +16,28 @@ jobs:
       - name: 'Install using Bundler'
         run: bundle install
       - name: 'Run Rubocop linter'
-        run: rubocop --parallel
+        run: rubocop
+  testing:
+    name: 'Testing'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout code'
+        uses: actions/checkout@v3
+      - name: 'Setup Ruby and install gems'
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.0
+      - name: 'Install using Bundler'
+        run: bundle install
       - name: 'Run RSpec testing'
+        run: rspec
+      - name: Setup test database
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: discord-fit-bot
+        run: |
+          bundle exec rails db:create db:migrate
+
+      - name: Run tests
         run: rspec
