@@ -3,7 +3,8 @@ name: Linting-and-Testing
 on: [push]
 
 jobs:
-  linting-and-testing:
+  linting:
+    name: 'Linting'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout code'
@@ -16,5 +17,8 @@ jobs:
         run: bundle install
       - name: 'Run Rubocop linter'
         run: rubocop
-      - name: 'Run RSpec testing'
-        run: rspec 
+  testing:
+    name: 'Testing'
+    needs: [linting]
+    - name: 'Run RSpec testing'
+      run: rspec
