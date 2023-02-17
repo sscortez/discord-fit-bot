@@ -19,6 +19,7 @@ jobs:
         run: rubocop
   testing:
     name: 'Testing'
+    runs-on: ubuntu-latest
     needs: [linting]
     steps:
       - name: 'Run RSpec testing'
