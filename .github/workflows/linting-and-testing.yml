@@ -56,4 +56,8 @@ jobs:
           bin/rails db:create
           bundle exec rails db:migrate
       - name: Run RSpec
+        env:
+            RAILS_ENV: test
+            PGHOST: localhost
+            PGUSER: discord-fit-bot
         run: bundle exec rspec
