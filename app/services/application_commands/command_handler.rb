@@ -22,5 +22,9 @@ module ApplicationCommands
     def requested_command
       @request_body['data']['name']
     end
+
+    def dummy_method
+      1
+    end
   end
 end
