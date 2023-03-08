@@ -44,6 +44,10 @@ jobs:
       - name: Install using Bundler
         run: bundle install
       - name: Test some postgres CLI
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: postgres
         run: psql -l
       - name: Build Database
         env:
