@@ -28,6 +28,10 @@ jobs:
         image: postgres:12.1-alpine
         ports:
           - 5432:5432
+        env:
+          POSTGRES_USER: discord-fit-bot
+          POSTGRES_PASSWORD: ${{ secrets.DISCORD_FIT_BOT_DATABASE_PASSWORD }}
+          POSTGRES_DB: postgres
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
       redis:
         image: redis
