@@ -24,7 +24,7 @@ module ApplicationCommands
     end
 
     def dummy_method
-      1
+      12
     end
   end
 end
