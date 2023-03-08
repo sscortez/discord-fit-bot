@@ -55,7 +55,5 @@ jobs:
         run: |
           bin/rails db:create
           bundle exec rails db:migrate
-      - name: Print env variable
-        run: echo ${{ vars.TEST_VARIABLE }}
-      - name: Try calling secret
-        run: echo ${{ secrets.DISCORD_FIT_BOT_DATABASE_PASSWORD }}
+      - name: Run RSpec
+        run: bundle exec rspec
