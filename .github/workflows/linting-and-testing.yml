@@ -43,15 +43,13 @@ jobs:
           ruby-version: 3.2.0
       - name: Install using Bundler
         run: bundle install
-      - name: Install PostgreSQL
-        run: sudo apt-get -yqq install libpq-dev
       - name: Test some postgres CLI
         run: psql -l
+      - name: Build Database
         env:
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: postgres
-      - name: Connect to PostgreSQL
         run: |
           bin/rails db:create
           bundle exec rails db:migrate
