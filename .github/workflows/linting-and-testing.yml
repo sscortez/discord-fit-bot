@@ -1,0 +1,63 @@
+name: Linting-and-Testing
+
+on: [push]
+
+jobs:
+
+  linting:
+    name: Linting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.0
+      - name: Install using Bundler
+        run: bundle install
+      - name: Run Rubocop linter
+        run: rubocop
+
+  testing:
+    name: Testing
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12.1-alpine
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: discord-fit-bot
+          POSTGRES_PASSWORD: ""
+          POSTGRES_DB: postgres
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.0
+      - name: Install using Bundler
+        run: bundle install
+      - name: Build Database
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: discord-fit-bot
+        run: |
+          bin/rails db:create
+          bundle exec rails db:migrate
+      - name: Run RSpec
+        env:
+            RAILS_ENV: test
+            PGHOST: localhost
+            PGUSER: discord-fit-bot
+        run: bundle exec rspec
