@@ -31,7 +31,7 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
         env:
           DISCORD_FIT_BOT_DATABASE_PASSWORD: ${{ secrets.DISCORD_FIT_BOT_DATABASE_PASSWORD }}
-          POSTGRES_USER: postgres
+          POSTGRES_USER: discord-fit-bot
           POSTGRES_DB: postgres
           POSTGRES_PASSWORD: ""
       redis:
@@ -55,7 +55,7 @@ jobs:
         env:
           RAILS_ENV: test
           PGHOST: localhost
-          PGUSER: postgres
+          PGUSER: discord-fit-bot
       - name: Connect to PostgreSQL
         run: |
           bin/rails db:create
