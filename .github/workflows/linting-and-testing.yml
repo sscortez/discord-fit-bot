@@ -30,7 +30,7 @@ jobs:
           - 5432:5432
         env:
           POSTGRES_USER: discord-fit-bot
-          POSTGRES_PASSWORD: ${{ secrets.DISCORD_FIT_BOT_DATABASE_PASSWORD }}
+          POSTGRES_PASSWORD: ""
           POSTGRES_DB: postgres
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
       redis:
@@ -47,12 +47,6 @@ jobs:
           ruby-version: 3.2.0
       - name: Install using Bundler
         run: bundle install
-      - name: Test some postgres CLI
-        env:
-          RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: postgres
-        run: psql -l
       - name: Build Database
         env:
           RAILS_ENV: test
