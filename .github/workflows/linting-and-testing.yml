@@ -55,7 +55,7 @@ jobs:
         env:
           RAILS_ENV: test
           PGHOST: localhost
-          PGUSER: myapp
+          PGUSER: postgres
       - name: Connect to PostgreSQL
         run: |
           bin/rails db:create
