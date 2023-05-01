@@ -2,7 +2,7 @@
 
 This a Discord app that can be used to initiate a fitness journey amongst users in your server. Each month users are challenged to create and maintain a fitness goal. They will log their exercises. Their progress will be aggregated to the whole group's progress. After the challenge month is closed, the group's tally is calculated and a celebratory message will be sent if the group goal is achieved or met within a certain threshold. This app is built using Ruby on Rails
 
-* Ruby version:  3.2.0
+* Ruby version:  3.2.1
 * Rails version: 7.0.4.2
 
 ---
