@@ -6,6 +6,7 @@ RSpec.describe RegisteredUser, type: :model do
   describe 'associations' do
     it { is_expected.to belong_to(:guild) }
     it { is_expected.to belong_to(:user) }
+    it { is_expected.to have_many(:individual_challenges) }
   end
 
   it 'is valid with valid attributes' do

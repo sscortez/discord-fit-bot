@@ -29,7 +29,7 @@ RSpec.describe RegisteredUsers::Register do
 
   describe '#new' do
     context 'when user_id and guild_id are provided' do
-      it 'creates a new instantiation of class' do
+      it 'creates a new instantiation of the class' do
         user_id        = 'some_user_id'
         guild_id       = 'some_guild_id'
 
