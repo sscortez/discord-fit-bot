@@ -4,6 +4,8 @@ class RegisteredUser < ApplicationRecord
   belongs_to :user
   belongs_to :guild
 
+  has_many :individual_challenges, dependent: nil
+
   validates :uuid, presence: true
   validates :user, uniqueness: { scope: :guild_id }
 end
