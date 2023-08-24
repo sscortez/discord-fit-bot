@@ -18,8 +18,8 @@ module IndividualChallenges
       IndividualChallenge.create!(
         registered_user_id:,
         monthly_goal_count:,
-        date:               challenge_date,
-        month_year:         challenge_date.present? ? challenge_date.strftime('%m-%Y') : ''
+        challenge_date:,
+        month_year: challenge_date.present? ? challenge_date.strftime('%m-%Y') : ''
       )
     end
   end

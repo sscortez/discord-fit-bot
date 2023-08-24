@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_20_014701) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_24_221558) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -56,13 +56,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_014701) do
 
   create_table "individual_challenges", force: :cascade do |t|
     t.bigint "registered_user_id", null: false
-    t.date "date", null: false
+    t.date "challenge_date", null: false
     t.string "month_year", null: false
     t.integer "monthly_goal_count", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["registered_user_id", "id"], name: "index_individual_challenges_on_registered_user_id_and_id", unique: true
     t.index ["registered_user_id"], name: "index_individual_challenges_on_registered_user_id"
+  end
+
+  create_table "individual_workouts", force: :cascade do |t|
+    t.bigint "registered_user_id", null: false
+    t.date "workout_date", null: false
+    t.string "month_year", null: false
+    t.integer "duration_mins", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["registered_user_id"], name: "index_individual_workouts_on_registered_user_id"
   end
 
   create_table "interactions", force: :cascade do |t|
@@ -108,6 +118,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_014701) do
   add_foreign_key "application_commands", "application_command_types"
   add_foreign_key "application_commands", "discord_applications"
   add_foreign_key "individual_challenges", "registered_users"
+  add_foreign_key "individual_workouts", "registered_users"
   add_foreign_key "registered_users", "guilds"
   add_foreign_key "registered_users", "users"
 end

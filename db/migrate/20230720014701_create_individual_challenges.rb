@@ -5,7 +5,7 @@ class CreateIndividualChallenges < ActiveRecord::Migration[7.0]
     create_table :individual_challenges do |t|
       t.references :registered_user, null: false, foreign_key: true
 
-      t.date    :date,               null: false
+      t.date    :challenge_date,     null: false
       t.string  :month_year,         null: false
       t.integer :monthly_goal_count, null: false
 
