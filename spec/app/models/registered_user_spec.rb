@@ -7,6 +7,7 @@ RSpec.describe RegisteredUser, type: :model do
     it { is_expected.to belong_to(:guild) }
     it { is_expected.to belong_to(:user) }
     it { is_expected.to have_many(:individual_challenges) }
+    it { is_expected.to have_many(:individual_workouts) }
   end
 
   it 'is valid with valid attributes' do

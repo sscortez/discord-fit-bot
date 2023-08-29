@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class IndividualChallenge < ApplicationRecord
+class IndividualWorkout < ApplicationRecord
   belongs_to :registered_user, dependent: nil
 
-  validates :monthly_goal_count, :challenge_date, presence: true
+  validates :duration_mins, :workout_date, presence: true
 
   validates :month_year,
             format: {

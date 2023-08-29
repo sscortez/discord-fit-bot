@@ -2,26 +2,26 @@
 
 require 'rails_helper'
 
-RSpec.describe IndividualChallenge, type: :model do
+RSpec.describe IndividualWorkout, type: :model do
   describe 'associations' do
     it { is_expected.to belong_to(:registered_user) }
   end
 
   it 'is valid with valid attributes' do
-    expect(create(:individual_challenge)).to be_valid
+    expect(create(:individual_workout)).to be_valid
   end
 
   describe 'validations' do
-    subject { build(:individual_challenge) }
+    subject { build(:individual_workout) }
 
-    it { is_expected.to validate_presence_of(:challenge_date) }
+    it { is_expected.to validate_presence_of(:workout_date) }
     it { is_expected.to validate_presence_of(:month_year) }
-    it { is_expected.to validate_presence_of(:monthly_goal_count) }
+    it { is_expected.to validate_presence_of(:duration_mins) }
 
     context 'when month_year is invalid' do
       it 'is expected to raise an error' do
         expect do
-          create(:individual_challenge, month_year: '50-5000')
+          create(:individual_workout, month_year: '50-5000')
         end.to raise_error(ActiveRecord::RecordInvalid, /\b#{I18n.t('month_year_validation_message')}\b/)
       end
     end
