@@ -23,6 +23,7 @@ module RegisteredUsers
     def register_new_user!(user_id, guild_id)
       user = user_exists?(user_id) || create_user!(user_id)
 
+      # TODO: Don't give user the ability to create a guild record!!!
       guild = guild_exists?(guild_id) || create_guild!(guild_id)
 
       create_registered_user!(user, guild)

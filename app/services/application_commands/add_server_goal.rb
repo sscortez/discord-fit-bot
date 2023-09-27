@@ -5,9 +5,5 @@ module ApplicationCommands
     def initialize(request_body)
       @request_body = request_body
     end
-
-    def call
-      
-    end
   end
 end

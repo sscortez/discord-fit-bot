@@ -127,6 +127,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_221558) do
 
   add_foreign_key "application_commands", "application_command_types"
   add_foreign_key "application_commands", "discord_applications"
+  add_foreign_key "guild_monthly_challenges", "guilds"
+  add_foreign_key "individual_challenges", "registered_users"
+  add_foreign_key "individual_workouts", "registered_users"
   add_foreign_key "registered_users", "guilds"
   add_foreign_key "registered_users", "users"
 end
