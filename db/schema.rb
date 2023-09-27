@@ -45,6 +45,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_221558) do
     t.index ["discord_application_id"], name: "index_discord_applications_on_discord_application_id", unique: true
   end
 
+  create_table "guild_monthly_challenges", force: :cascade do |t|
+    t.bigint "guild_id", null: false
+    t.date "month_year", null: false
+    t.integer "target_exercises", default: 0, null: false
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guild_id"], name: "index_guild_monthly_challenges_on_guild_id"
+  end
+
   create_table "guilds", force: :cascade do |t|
     t.string "discord_guild_id", default: "", null: false
     t.string "name", default: "", null: false
@@ -117,6 +127,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_221558) do
 
   add_foreign_key "application_commands", "application_command_types"
   add_foreign_key "application_commands", "discord_applications"
+  add_foreign_key "guild_monthly_challenges", "guilds"
   add_foreign_key "individual_challenges", "registered_users"
   add_foreign_key "individual_workouts", "registered_users"
   add_foreign_key "registered_users", "guilds"

@@ -6,6 +6,7 @@ RSpec.describe Guild, type: :model do
   describe 'associations' do
     it { is_expected.to have_many(:users) }
     it { is_expected.to have_many(:registered_users) }
+    it { is_expected.to have_many(:guild_monthly_challenges) }
   end
 
   it 'is valid with valid attributes' do
